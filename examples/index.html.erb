@@ -1,0 +1,69 @@
+<% header("X-Powered-By: RHP #{RHP::VERSION}") %>
+<html>
+  <head>
+    <title>RHP Demo Page</title>
+  </head>
+  <body>
+    <h1>RHP Demo Page</h1>
+
+    <p>A dynamically generated list</p>
+
+    <ul>
+      <% [1, 2, 3, 4].each do |elem| %>
+        <li><%= elem %></li>
+      <% end %>
+    </ul>
+
+    <p>A multi-line string</p>
+
+    <p>
+      <%= nl2br <<-EOS
+        wooooo
+        woooo
+        woooooo
+        wooooo
+        EOS
+      %>
+    </p>
+
+    <h2>GET</h2>
+
+    <p>Dynamic content from GET params</p>
+
+    <form method="get">
+      <div>
+        <label for="get-woop-woop">woop woop</label>
+        <input id="get-woop-woop" name="woop_woop"
+          value="<%= request.GET['woop_woop']%>" />
+      </div>
+
+      <% if request.GET['woop_woop'] %>
+        <div>
+          <tt>GET: woop_woop=<%= request.GET['woop_woop'] %></tt>
+        </div>
+      <% end %>
+
+      <input type="submit" />
+    </form>
+
+    <h2>POST</h2>
+
+    <p>Dynamic content from POST params</p>
+
+    <form method="post">
+      <div>
+        <label for="post-woop-woop">woop woop</label>
+        <input id="post-woop-woop" name="woop_woop"
+          value="<%= request.POST['woop_woop']%>" />
+      </div>
+
+      <% if request.POST['woop_woop'] %>
+        <div>
+          <tt>POST: woop_woop=<%= request.POST['woop_woop'] %></tt>
+        </div>
+      <% end %>
+
+      <input type="submit" />
+    </form>
+  </body>
+</html>

@@ -22,7 +22,7 @@ module RHP
         @root    = root
         @env     = env
         @status  = 200
-        @headers = { 'Content-Type" => "text/html' }
+        @headers = { 'Content-Type' => 'text/html' }
         @request = Rack::Request.new(env)
       end
 
